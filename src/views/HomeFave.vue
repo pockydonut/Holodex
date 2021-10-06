@@ -17,7 +17,10 @@
     class="d-flex flex-column"
   >
     <!-- Teleport tabs to nav extension slot -->
-    <portal to="mainNavExt" :disabled="!$vuetify.breakpoint.xs || !isActive">
+    <portal
+      to="mainNavExt"
+      :disabled="!$vuetify.breakpoint.xs || !isActive"
+    >
       <v-tabs
         v-model="tab"
         :centered="$vuetify.breakpoint.xs"
@@ -43,26 +46,88 @@
         <v-tab class="pa-2">
           {{ $t("views.home.recentVideoToggles.subber") }}
         </v-tab>
-        <portal-target v-if="!$vuetify.breakpoint.xs" :name="`date-selector${isFavPage}`" class=" v-tab ml-auto" />
+
+        <!-- <v-tab class="pa-2">
+          <input
+            type="text"
+            value="https://holodex.net/favorites.ics?key="
+          >
+        </v-tab> -->
+        <div class="mt-auto mb-auto">
+          <v-menu
+            bottom
+            :close-on-content-click="false"
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                icon
+                :ripple="false"
+                v-bind="attrs"
+                v-on="on"
+                @click.stop.prevent
+              >
+                <v-icon>{{ icons.mdiDotsVertical }}</v-icon>
+              </v-btn>
+            </template>
+            <div>
+              <v-list dense>
+                <v-list-item @click.stop>
+                  <!-- <v-icon left>
+                    {{ icons.mdiYoutube }}
+                  </v-icon> -->
+                  <v-text-field
+                    label="Up to"
+                    :prepend-icon="mdiCalendarEnd"
+                    value="https://staging.holodex.net/live.ics?org=Hololive"
+                    readonly
+                    hide-details
+                    dense
+                    ghost
+                    single-line
+                    style="opacity: 0.7; max-width: 170px;"
+                  />
+                </v-list-item>
+              </v-list>
+            </div>
+          </v-menu>
+        </div>
+        <portal-target
+          v-if="!$vuetify.breakpoint.xs"
+          :name="`date-selector${isFavPage}`"
+          class="v-tab ml-auto"
+        />
       </v-tabs>
     </portal>
 
     <template v-if="isFavPage && !(isLoggedIn && favoriteChannelIDs.size > 0)">
       <div class="ma-auto d-flex flex-column align-center">
-        <v-icon color="primary" large>
+        <v-icon
+          color="primary"
+          large
+        >
           {{ icons.mdiHeart }}
         </v-icon>
-        <div class="text-body-1 text-center" v-html="$t('views.favorites.promptForAction')" />
+        <div
+          class="text-body-1 text-center"
+          v-html="$t('views.favorites.promptForAction')"
+        />
         <v-btn :to="isLoggedIn ? '/channel' : '/login'">
           {{ isLoggedIn ? $t("views.favorites.manageFavorites") : $t("component.mainNav.login") }}
         </v-btn>
       </div>
     </template>
 
-    <LoadingOverlay :is-loading="false" :show-error="hasError" />
+    <LoadingOverlay
+      :is-loading="false"
+      :show-error="hasError"
+    />
     <div v-show="!hasError && !(isFavPage && !(isLoggedIn && favoriteChannelIDs.size > 0))">
       <template v-if="tab === Tabs.LIVE_UPCOMING">
-        <SkeletonCardList v-if="isLoading" :cols="colSizes" :dense="currentGridSize > 0" />
+        <SkeletonCardList
+          v-if="isLoading"
+          :cols="colSizes"
+          :dense="currentGridSize > 0"
+        />
         <div v-if="lives.length || upcoming.length">
           <VideoCardList
             :videos="lives"
@@ -74,7 +139,10 @@
             :for-org="isFavPage?'none':null"
             :hide-collabs="shouldHideCollabs"
           />
-          <v-divider v-if="lives.length" class="my-3 secondary" />
+          <v-divider
+            v-if="lives.length"
+            class="my-3 secondary"
+          />
           <VideoCardList
             :videos="upcoming"
             include-channel
@@ -86,7 +154,10 @@
             :hide-collabs="shouldHideCollabs"
           />
         </div>
-        <div v-show="!isLoading && lives.length == 0 && upcoming.length == 0" class="ma-auto pa-5 text-center">
+        <div
+          v-show="!isLoading && lives.length == 0 && upcoming.length == 0"
+          class="ma-auto pa-5 text-center"
+        >
           {{ $t("views.home.noStreams") }}
         </div>
       </template>
@@ -100,7 +171,10 @@
           style="display: flex; justify-content: flex-end;"
           class="ma-0 pb-0 pt-0"
         >
-          <portal :to="`date-selector${isFavPage}`" :disabled="$vuetify.breakpoint.xs">
+          <portal
+            :to="`date-selector${isFavPage}`"
+            :disabled="$vuetify.breakpoint.xs"
+          >
             <v-menu
               v-show="isActive"
               v-model="datePicker"
@@ -155,7 +229,11 @@
               :for-org="isFavPage?'none':null"
             />
             <!-- only show SkeletonCardList if it's loading -->
-            <SkeletonCardList v-if="lod" :cols="colSizes" :dense="currentGridSize > 0" />
+            <SkeletonCardList
+              v-if="lod"
+              :cols="colSizes"
+              :dense="currentGridSize > 0"
+            />
           </generic-list-loader>
         </keep-alive>
       </template>
@@ -438,11 +516,11 @@ export default {
 
 <style>
 .v-slide-group__prev--disabled {
-    display: none !important;
+  display: none !important;
 }
 /* shared with favorites.vue */
 .stream-count-chip {
-    letter-spacing: normal;
-    min-width: 24px;
+  letter-spacing: normal;
+  min-width: 24px;
 }
 </style>
