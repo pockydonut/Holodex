@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig, loadEnv } from "vite";
-import { createVuePlugin } from "vite-plugin-vue2";
-import ViteComponents, { VuetifyResolver } from "vite-plugin-components";
+import vue from '@vitejs/plugin-vue'
+import vuetify from '@vuetify/vite-plugin'
 import visualizer from "rollup-plugin-visualizer";
 import yaml from "@rollup/plugin-yaml";
 import { VitePWA } from "vite-plugin-pwa";
@@ -20,15 +20,9 @@ export default ({ mode }) => {
     return defineConfig({
         plugins: [
             yaml(),
-            createVuePlugin(),
-            ViteComponents({
-                customComponentResolvers: [VuetifyResolver()],
-                deep: false,
-                /**
-                 * Vite-Components removes need to import components by deepscanning the src/components folder
-                 * but is fairly dangerous in terms of how it figures out which to import. Since we are using
-                 * manual import processes, we only want ViteComponents for vuetify resolution.
-                 */
+            vue(),
+            vuetify({
+                autoImport: true,
             }),
             VitePWA({
                 includeAssets: [

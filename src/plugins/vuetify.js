@@ -1,16 +1,17 @@
-import Vue from "vue";
-import Vuetify from "vuetify/lib";
+// import { createApp } from "vue";
+import { createVuetify } from "vuetify";
 import themeSet from "@/utils/themes";
-import VueI18n from "vue-i18n";
 
 import enTL from "@/locales/en/ui.yml";
-import vuetifyEn from "vuetify/lib/locale/en";
+import vuetifyEn from "vuetify/lib/locale/en.mjs";
 import { dayjs } from "@/utils/time";
 
-import * as VuetifyDirectives from "vuetify/lib/directives";
+import { createI18n, useI18n } from "vue-i18n";
+
+// import { createVueI18nAdapter } from "vuetify/locale/adapters";
 
 // ====== i18n setup ======
-Vue.use(VueI18n);
+// Vue.use(VueI18n);
 
 export const langs = [
     { val: "en", display: "English", credit: "@Holodex" },
@@ -118,7 +119,8 @@ export const asyncLang = {
     },
 };
 
-export const i18n = new VueI18n({
+// eslint-disable-next-line new-cap
+export const i18n = new createI18n({
     locale: "en", // Set locale
     fallbackLocale: "en",
     // Set default locale messages,
@@ -213,33 +215,32 @@ export const config = {
         },
         themes: theme.themes,
     },
-    lang: {
-        t: (key, ...params) => i18n.t(key, params),
-    },
 };
-
-Vue.use(Vuetify);
+// locale: createVueI18nAdapter({
+//     i18n,
+//     useI18n,
+// }),
 
 // workaround for vuetify directives not being auto-loaded for some reason
 // if you remove this, you'll get warnings for e.g. `v-touch` not existing
-/** @param {string} value */
-const splitOnUpperCase = (value) => {
-    const out = [];
-    let fragment = "";
-    [...value].forEach((char, index) => {
-        if (index > 0 && char.toUpperCase() === char) {
-            out.push(fragment);
-            fragment = "";
-        }
-        fragment += char;
-    });
-    if (fragment.length > 0) out.push(fragment);
-    return out;
-};
-/** @param {string} value */
-const toKebabCase = (value) => splitOnUpperCase(value).map((v) => v.toLowerCase()).join("-");
-Object.keys(VuetifyDirectives).forEach((directive) => {
-    Vue.directive(toKebabCase(directive), VuetifyDirectives[directive]);
-});
+// /** @param {string} value */
+// const splitOnUpperCase = (value) => {
+//     const out = [];
+//     let fragment = "";
+//     [...value].forEach((char, index) => {
+//         if (index > 0 && char.toUpperCase() === char) {
+//             out.push(fragment);
+//             fragment = "";
+//         }
+//         fragment += char;
+//     });
+//     if (fragment.length > 0) out.push(fragment);
+//     return out;
+// };
+// /** @param {string} value */
+// const toKebabCase = (value) => splitOnUpperCase(value).map((v) => v.toLowerCase()).join("-");
+// Object.keys(VuetifyDirectives).forEach((directive) => {
+//     Vue.directive(toKebabCase(directive), VuetifyDirectives[directive]);
+// });
 
-export const vuetify = new Vuetify(config);
+export const vuetify = createVuetify(config);
