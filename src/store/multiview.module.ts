@@ -2,11 +2,10 @@
 import type { LayoutItem } from "@/external/vue-grid-layout/src/helpers/utils";
 import { getFirstCollision } from "@/external/vue-grid-layout/src/helpers/utils";
 import {
- getDesktopDefaults, desktopPresets, mobilePresets, decodeLayout,
+    getDesktopDefaults, desktopPresets, mobilePresets, decodeLayout,
 } from "@/utils/mv-utils";
 import type { Content } from "@/utils/mv-utils";
 import api from "@/utils/backend-api";
-import Vue from "vue";
 import debounce from "lodash-es/debounce";
 import axios from "axios";
 import { CHANNEL_URL_REGEX } from "@/utils/consts";
@@ -121,10 +120,10 @@ const mutations = {
     },
     setLayoutContentById(state, payload) {
         const { id, content } = payload;
-        Vue.set(state.layoutContent, id, content);
+        this.$set(state.layoutContent, id, content);
     },
     setLayoutContent(state, content) {
-        Vue.set(state, "layoutContent", content);
+        this.$set(state, "layoutContent", content);
     },
     addLayoutItem(state) {
         // Increment the counter to ensure key is always unique.
@@ -166,25 +165,25 @@ const mutations = {
         state.layout.push(newLayoutItem);
     },
     setLayoutContentWithKey(state, { id, key, value }) {
-        if (state.layoutContent[id]) Vue.set(state.layoutContent[id], key, value);
+        if (state.layoutContent[id]) this.$set(state.layoutContent[id], key, value);
     },
     removeLayoutItem(state, id) {
         const index = state.layout.map((item) => item.i).indexOf(id);
         state.layout.splice(index, 1);
-        if (state.layoutContent[id]) Vue.delete(state.layoutContent, id);
+        if (state.layoutContent[id]) this.$delete(state.layoutContent, id);
     },
     freezeLayoutItem(state, id) {
         const index = (state.layout as Array<any>).findIndex((x) => x.i === id);
-        Vue.set(state.layout[index], "isResizable", false);
-        Vue.set(state.layout[index], "isDraggable", false);
+        this.$set(state.layout[index], "isResizable", false);
+        this.$set(state.layout[index], "isDraggable", false);
     },
     unfreezeLayoutItem(state, id) {
         const index = (state.layout as Array<any>).findIndex((x) => x.i === id);
-        Vue.set(state.layout[index], "isResizable", true);
-        Vue.set(state.layout[index], "isDraggable", true);
+        this.$set(state.layout[index], "isResizable", true);
+        this.$set(state.layout[index], "isDraggable", true);
     },
     deleteLayoutContent(state, id) {
-        Vue.delete(state.layoutContent, id);
+        this.$delete(state.layoutContent, id);
     },
     addPresetLayout(state, content) {
         state.presetLayout.push(content);
@@ -200,7 +199,7 @@ const mutations = {
     },
     setAutoLayout(state, { index, encodedLayout }) {
         // if (!encodedLayout) return;
-        Vue.set(state.autoLayout, index, encodedLayout);
+        this.$set(state.autoLayout, index, encodedLayout);
     },
     resetAutoLayout(state) {
         state.autoLayout = getDesktopDefaults();
@@ -215,21 +214,21 @@ const mutations = {
         // Setting is set to true, flip all but one to muted
         if (val) {
             Object.keys(state.layoutContent)
-            .filter((key) => state.layoutContent[key]?.type === "video")
-            .forEach((key, index) => {
-                Vue.set(state.layoutContent[key], "muted", index !== 0);
-            });
+                .filter((key) => state.layoutContent[key]?.type === "video")
+                .forEach((key, index) => {
+                    this.$set(state.layoutContent[key], "muted", index !== 0);
+                });
         }
     },
     muteOthers: debounce((state, currentKey) => {
         if (!state.muteOthers) return;
         Object.keys(state.layoutContent).forEach((key) => {
             if (key === `${currentKey}`) {
-                Vue.set(state.layoutContent[key], "muted", false);
+                this.$set(state.layoutContent[key], "muted", false);
                 return;
             }
             if (state.layoutContent[key]?.type === "video") {
-                Vue.set(state.layoutContent[key], "muted", true);
+                this.$set(state.layoutContent[key], "muted", true);
             }
         });
     }, 0, { trailing: true }),
@@ -246,7 +245,7 @@ const mutations = {
         Object.values<Content>(state.layoutContent).filter(missingVideoDataFilter).forEach((x) => { x.video.noData = true; });
     },
     setSyncOffsets(state, { id, value }) {
-        Vue.set(state.syncOffsets, id, value);
+        this.$set(state.syncOffsets, id, value);
     },
     swapGridPosition(state, { id1, id2 }) {
         const { x: tX, y: tY, w: tW, h: tH } = state.layout[id1];

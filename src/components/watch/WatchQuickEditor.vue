@@ -78,9 +78,9 @@
           </v-icon>
         </v-avatar> -->
 
-        <template v-for="item in mentions">
+        <template v-for="item in mentions" :key="item.id + 'chip'">
           <ChannelChip
-            :key="item.id + 'chip'"
+
             :channel="item"
             :size="60"
             :close-delay="0"

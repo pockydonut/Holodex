@@ -6,9 +6,11 @@
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <template v-if="!hideBuckets">
-          <template v-for="b in buckets">
+          <template
+            v-for="b in buckets"
+            :key="b.time"
+          >
             <v-btn
-              :key="b.time"
               class="mr-2 mb-2 ts-btn"
               label
               :color="currentFilter === b.time ? 'primary darken-1' : ''"
@@ -26,8 +28,8 @@
           class="pa-0 transparent caption"
           @click.native="handleClick"
         >
-          <template v-for="comment in limitComment">
-            <Comment :key="comment.comment_key" :comment="comment" :video-id="video.id" />
+          <template v-for="comment in limitComment" :key="comment.comment_key">
+            <Comment :comment="comment" :video-id="video.id" />
           </template>
         </v-list>
         <v-btn

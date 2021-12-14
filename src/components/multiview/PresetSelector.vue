@@ -25,9 +25,11 @@
           </v-icon>
           {{ $t("views.library.selectionReset") }}
         </v-btn>
-        <template v-for="(group, index) in desktopGroups">
+        <template
+          v-for="(group, index) in desktopGroups"
+          :key="'preset-' + index"
+        >
           <v-radio-group
-            :key="'preset-' + index"
             :value="autoLayout[index] || 'None'"
             column
             hide-details
@@ -52,8 +54,8 @@
                   </template>
                 </LayoutPreviewCard>
               </v-col>
-              <template v-for="preset in group">
-                <v-col :key="preset.name" cols="auto" class="pa-1">
+              <template v-for="preset in group" :key="preset.name">
+                <v-col cols="auto" class="pa-1">
                   <LayoutPreviewCard
                     v-if="!showCustom || (showCustom && preset.custom)"
                     :preset="preset"
@@ -93,8 +95,8 @@
         </template>
       </div>
       <v-row v-else-if="currentTab === 1">
-        <template v-for="preset in decodedCustomPresets">
-          <v-col :key="preset.name" cols="auto" class="d-flex flex-column align-center">
+        <template v-for="preset in decodedCustomPresets" :key="preset.name">
+          <v-col cols="auto" class="d-flex flex-column align-center">
             <LayoutPreviewCard
               :preset="preset"
               :active="presetInAuto(preset)"
@@ -104,8 +106,8 @@
         </template>
       </v-row>
       <v-row v-else-if="currentTab === 2" justify="space-around" align="center">
-        <template v-for="preset in decodedMobilePresets">
-          <v-col :key="preset.name" cols="auto" class="d-flex flex-column align-center">
+        <template v-for="preset in decodedMobilePresets" :key="preset.name">
+          <v-col cols="auto" class="d-flex flex-column align-center">
             <LayoutPreviewCard
               :preset="preset"
               :active="presetInAuto(preset)"
@@ -124,8 +126,8 @@
       </v-btn>
     </div>
     <v-row class="ml-1">
-      <template v-for="preset in currentGroup">
-        <v-col :key="preset.name" cols="auto" class="justify-center pa-1">
+      <template v-for="preset in currentGroup" :key="preset.name">
+        <v-col cols="auto" class="justify-center pa-1">
           <LayoutPreviewCard
             :scale="0.8"
             :preset="preset"

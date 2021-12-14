@@ -96,9 +96,9 @@
           </v-btn>
         </template>
         <v-list dense>
-          <template v-for="(b, index) in collapseButtons">
+          <template v-for="(b, index) in collapseButtons" :key="`mv-collapsed-${index}`">
             <v-list-item
-              :key="`mv-collapsed-${index}`"
+
               block
               class="mb-2"
               @click="b.onClick"

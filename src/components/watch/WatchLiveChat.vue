@@ -12,7 +12,7 @@
     </span>
     <!-- Archive translations for videos not upcoming/live -->
     <!-- 'chat-overlay': fixedBottom || fixedRight, -->
-    <ArchiveTranslations
+    <!-- <ArchiveTranslations
       v-show="showTlChat"
       v-if="isArchived && showTlChat"
       :video="video"
@@ -24,10 +24,10 @@
       :current-time="currentTime"
       :use-local-subtitle-toggle="useLocalSubtitleToggle"
       @timeJump="time => $emit('timeJump', time)"
-    />
+    /> -->
     <!-- Live translations for upcoming/live videos -->
     <!-- 'chat-overlay': fixedBottom || fixedRight, -->
-    <LiveTranslations
+    <!-- <LiveTranslations
       v-else-if="firstTlConnect"
       v-show="showTlChat"
       :video="video"
@@ -39,7 +39,7 @@
       :current-time="currentTime"
       :use-local-subtitle-toggle="useLocalSubtitleToggle"
       @videoUpdate="handleVideoUpdate"
-    />
+    /> -->
     <!--  -->
     <!-- Youtube scalable embedded window -->
     <div
@@ -68,14 +68,14 @@
 </template>
 
 <script lang="ts">
-import LiveTranslations from "@/components/chat/LiveTranslations.vue";
+// import LiveTranslations from "@/components/chat/LiveTranslations.vue";
 
 // Contains Live Chat iframe and Chat TLs, can show either one at both at the same time
 export default {
     name: "WatchLiveChat",
     components: {
-        LiveTranslations,
-        ArchiveTranslations: () => import("@/components/chat/ArchiveTranslations.vue"),
+        // LiveTranslations,
+        // ArchiveTranslations: () => import("@/components/chat/ArchiveTranslations.vue"),
     },
     props: {
         video: {

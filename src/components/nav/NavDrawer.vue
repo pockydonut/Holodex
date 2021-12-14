@@ -12,9 +12,11 @@
     <slot />
     <v-list dense class="pb-0">
       <!-- <v-list> -->
-      <template v-for="page in pages">
+      <template
+        v-for="page in pages"
+        :key="page.name"
+      >
         <v-list-item
-          :key="page.name"
           link
           :href="page.path"
           :class="{ 'v-list-item--active': $route.fullPath === page.path }"
@@ -55,10 +57,9 @@
       <v-subheader class="pl-5 text-overline">
         {{ $t("component.mainNav.favorites") }}
       </v-subheader>
-      <template v-for="vid in collapsedFavorites">
+      <template v-for="vid in collapsedFavorites" :key="vid.id + 'favd'">
         <v-list-item
           v-if="vid"
-          :key="vid.id"
           :class="{ 'v-list-item--active': $route.path.startsWith(`/channel/${vid.channel.id}`) }"
           @click="$router.push(`/channel/${vid.channel.id}`).catch(() => {})"
         >

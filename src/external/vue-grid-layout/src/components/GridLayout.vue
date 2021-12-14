@@ -19,7 +19,7 @@
 }
 </style>
 <script lang="ts">
-import Vue from "vue";
+// import Vue from "vue";
 import elementResizeDetectorMaker from "element-resize-detector";
 
 import {
@@ -149,7 +149,7 @@ export default {
             self.dragEvent(eventType, i, x, y, h, w);
         };
 
-        self._provided.eventBus = new Vue();
+        // self._provided.eventBus = new Vue();
         self.eventBus = self._provided.eventBus;
         self.eventBus.$on("resizeEvent", self.resizeEventHandler);
         self.eventBus.$on("dragEvent", self.dragEventHandler);

@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 // import api from "@/utils/backend-api";
-import Vue from "vue";
 // import { CHANNEL_TYPES } from "@/utils/consts";
 
 const initialState = {
@@ -69,10 +68,10 @@ const mutations = {
         state.category = category;
     },
     setSort(state, val) {
-        Vue.set(state.sort, state.category, val);
+        this.$set(state.sort, state.category, val);
     },
     setCardView(state, val) {
-        Vue.set(state.cardView, state.category, val);
+        this.$set(state.cardView, state.category, val);
     },
     // resetChannels(state) {
     //     state.currentOffset = 0;

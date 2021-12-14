@@ -45,9 +45,9 @@
         </v-container>
       </v-expand-transition>
     </template>
-    <template v-for="relation in Object.keys(related)">
+    <template v-for="relation in Object.keys(related)" :key="`band${relation}`">
       <template v-if="related[relation].length">
-        <div :key="`band${relation}`" class="lightup d-flex">
+        <div class="lightup d-flex">
           <a
             :key="`${relation}-title`"
             class="d-block text-overline mx-2 my-1"

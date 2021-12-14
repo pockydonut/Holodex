@@ -32,6 +32,7 @@
     "@interactjs/interactjs": "^1.10.11",
     "@interactjs/modifiers": "^1.10.11",
     "@mdi/js": "^5.9.55",
+    "@vue/compat": "^3.2.24",
     "axios": "^0.21.2",
     "axios-retry": "^3.1.9",
     "dayjs": "^1.10.6",
@@ -49,10 +50,9 @@
     "string-similarity": "^4.0.4",
     "v-google-translate": "^0.1.10",
     "vue": "^3.2.24",
-    "@vue/compat": "^3.2.24",
     "vue-google-oauth2": "^1.5.8",
-    "vue-gtag": "^1.16.1",
-    "vue-i18n": "^8.25.0",
+    "vue-gtag-next": "^1.14.0",
+    "vue-i18n": "^9.2.0-beta.23",
     "vue-keypress": "^2.1.1",
     "vue-linkify": "^1.0.1",
     "vue-meta": "^2.4.0",
@@ -73,7 +73,9 @@
     "@types/chrome": "^0.0.139",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
+    "@vitejs/plugin-vue": "^1.10.2",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "@vuetify/vite-plugin": "^1.0.0-alpha.9",
     "babel-plugin-lodash": "^3.3.4",
     "changelog-to-html": "^0.6.0",
     "dotenv": "^10.0.0",
@@ -93,8 +95,6 @@
     "vite": "^2.7.0",
     "vite-plugin-pwa": "^0.11.2",
     "vue-cli-plugin-vuetify": "~2.4.5",
-    "vuetify-loader": "^2.0.0-alpha.8",
-    "@vuetify/vite-plugin": "^1.0.0-alpha.9",
-    "@vitejs/plugin-vue": "^1.10.2"
+    "vuetify-loader": "^2.0.0-alpha.8"
   }
 }

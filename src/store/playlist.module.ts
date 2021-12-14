@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import Vue from "vue";
+// import Vue from "vue";
 import backendApi from "@/utils/backend-api";
 import type { Playlist } from "@/utils/types";
 
@@ -32,7 +32,7 @@ const mutations = {
     },
     setPlaylist(state, playlist: Playlist) {
         // Videos can be undefined, make sure it's at least []
-        Vue.set(state, "active", { videos: [], ...playlist });
+        this.$set(state, "active", { videos: [], ...playlist });
         state.isSaved = false;
     },
     addVideo(state, video) {
@@ -51,7 +51,7 @@ const mutations = {
     },
     reorder(state, { from, to }: { from: number; to: number }) {
         // https://stackoverflow.com/a/39271175
-        Vue.set(
+        this.$set(
             state.active,
             "videos",
             state.active.videos.reduce((prev, current, idx, self) => {
@@ -76,14 +76,14 @@ const mutations = {
         state.isSaved = false;
     },
     removeVideoByIndex(state, index: number) {
-        Vue.set(
+        this.$set(
             state.active,
             "videos",
             state.active.videos.filter((_, idx) => idx !== index),
         );
     },
     removeVideoByID(state, videoId: string) {
-        Vue.set(
+        this.$set(
             state.active,
             "videos",
             state.active.videos.filter((x) => x.id !== videoId),
@@ -94,7 +94,7 @@ const mutations = {
      * resets the playlist to a clean slate.
      */
     resetPlaylist(state) {
-        Vue.set(state, "active", {
+        this.$set(state, "active", {
             id: undefined,
             user_id: undefined,
             name: "Unnamed Playlist",

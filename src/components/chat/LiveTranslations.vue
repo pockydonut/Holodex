@@ -103,7 +103,7 @@ import { API_BASE_URL } from "@/utils/backend-api";
 import { dayjs } from "@/utils/time";
 import VueSocketIOExt from "vue-socket.io-extended";
 import { Manager } from "socket.io-client";
-import Vue from "vue";
+// import Vue from "vue";
 import WatchLiveTranslationsSetting from "./LiveTranslationsSetting.vue";
 import chatMixin from "./chatMixin";
 import MessageRenderer from "./MessageRenderer.vue";
@@ -118,7 +118,7 @@ const manager = new Manager(API_BASE_URL, {
     autoConnect: false,
 });
 
-Vue.use(VueSocketIOExt, manager.socket("/"));
+// Vue.use(VueSocketIOExt, manager.socket("/"));
 
 export default {
     name: "LiveTranslations",

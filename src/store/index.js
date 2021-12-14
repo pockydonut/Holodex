@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-import Vue from "vue";
+// import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import createMutationsSharer from "vuex-shared-mutations";
@@ -25,7 +25,7 @@ import orgs from "./orgs.module";
 import { migrations, VUEX_STATE_VERSION } from "./migrations";
 // import socket from "./socket.module";
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
 /**--------------------------------------------
  *               Initial State
@@ -92,7 +92,7 @@ export default new Vuex.Store({
             getState: createMigrate(migrations, "migration.version"),
             setState: debounce((key, state, storage) => {
                 storage.setItem(key, JSON.stringify(state));
-            // wait next tick
+                // wait next tick
             }),
         }),
         createMutationsSharer({
@@ -143,7 +143,7 @@ export default new Vuex.Store({
         },
         // login
         setUser(state, { user, jwt }) {
-            Vue.set(state.userdata, "user", user);
+            this.$set(state.userdata, "user", user);
             state.userdata.jwt = jwt;
         },
         setVisited(state) {

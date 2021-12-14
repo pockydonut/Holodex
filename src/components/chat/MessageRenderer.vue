@@ -8,9 +8,9 @@
     :class="{'ios-safari-reverse-fix': checkIOS() }"
   >
     <transition-group name="fade" :class="{'ios-safari-reverse-fix': checkIOS() }">
-      <template v-for="(item, index) in tlHistory">
+      <template v-for="(item, index) in tlHistory" :key="item.key">
         <chat-message
-          :key="item.key"
+
           :source="item"
           :hide-author="hideAuthor(item, index)"
         />

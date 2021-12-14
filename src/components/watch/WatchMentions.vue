@@ -6,8 +6,8 @@
       <v-icon small> {{ mdiAt }} </v-icon> Mentions
     </a>
     <v-card>
-      <template v-for="mention in channelChips">
-        <v-list-item :key="mention.id" class="d-flex flex-row align-center justify-space-between pa-1">
+      <template v-for="mention in channelChips" :key="mention.id">
+        <v-list-item class="d-flex flex-row align-center justify-space-between pa-1">
           <channel-img :channel="mention" rounded />
           <v-list-item-content class="pl-2">
             {{ getChannelName(mention) }}

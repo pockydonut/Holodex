@@ -101,21 +101,21 @@
 </template>
 
 <script lang="ts">
-import GAuth from "vue-google-oauth2";
+// import GAuth from "vue-google-oauth2";
 import open from "oauth-open";
 import api from "@/utils/backend-api";
-import Vue from "vue";
+// import Vue from "vue";
 import UserCard from "@/components/user/UserCard.vue";
 import copyToClipboard from "@/mixins/copyToClipboard";
 
-const gauthOption = {
-    clientId: "275540829388-87s7f9v2ht3ih51ah0tjkqng8pd8bqo2.apps.googleusercontent.com",
-    scope: "https://www.googleapis.com/auth/userinfo.email",
-    // scope: "openid",
-    prompt: "select_account",
-    fetch_basic_profile: false,
-};
-Vue.use(GAuth, gauthOption);
+// const gauthOption = {
+//     clientId: "275540829388-87s7f9v2ht3ih51ah0tjkqng8pd8bqo2.apps.googleusercontent.com",
+//     scope: "https://www.googleapis.com/auth/userinfo.email",
+//     // scope: "openid",
+//     prompt: "select_account",
+//     fetch_basic_profile: false,
+// };
+// Vue.use(GAuth, gauthOption);
 
 const apiURI = "/api";
 // the fact this URI is invalid doesn't matter,

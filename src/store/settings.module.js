@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-import Vue from "vue";
 import { createSimpleMutation, getUILang, getLang } from "@/utils/functions";
 
 const userLanguage = navigator.language || navigator.userLanguage || "en";
@@ -119,11 +118,11 @@ const mutations = {
     },
     toggleBlocked(state, channel) {
         // initialize if doesn't exist
-        if (!state.blockedChannels) Vue.set(state, "blockedChannels", []);
+        if (!state.blockedChannels) this.$set(state, "blockedChannels", []);
 
         // determine to add or subtract:
         if (state.blockedChannels.filter((x) => x.id === channel.id).length > 0) {
-            Vue.delete(
+            this.$delete(
                 state.blockedChannels,
                 state.blockedChannels.findIndex((x) => x.id === channel.id),
             );
@@ -132,10 +131,10 @@ const mutations = {
         }
     },
     toggleLiveTlBlocked(state, name) {
-        if (!state.liveTlBlocked) Vue.set(state, "blockedChannels", []);
+        if (!state.liveTlBlocked) this.$set(state, "blockedChannels", []);
         const index = state.liveTlBlocked.indexOf(name);
         if (index !== -1) {
-            Vue.delete(state.liveTlBlocked, index);
+            this.$delete(state.liveTlBlocked, index);
         } else {
             state.liveTlBlocked.push(name);
         }

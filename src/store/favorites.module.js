@@ -1,7 +1,6 @@
 /* eslint-disable no-shadow */
 import api from "@/utils/backend-api";
 import { sendFavoritesToExtension, sendTokenToExtension } from "@/utils/messaging";
-import Vue from "vue";
 import debounce from "lodash-es/debounce";
 import fdequal from "fast-deep-equal";
 import { videoTemporalComparator } from "@/utils/functions";
@@ -107,7 +106,7 @@ const actions = {
                 }
             })
             .finally(() => commit("clearStagedFavorites"));
-        }, 2000),
+    }, 2000),
 
     async resetFavorites({ dispatch, commit, rootState }) {
         commit("resetState");
@@ -158,14 +157,14 @@ const mutations = {
     },
     toggleFavorite(state, channelId) {
         if (state.stagedFavorites[channelId]) {
-            Vue.delete(state.stagedFavorites, channelId);
+            this.$delete(state.stagedFavorites, channelId);
             return;
         }
         // console.log(state.favorites.find((f) => f.id === channelId));
         if (state.favorites.find((f) => f.id === channelId)) {
-            Vue.set(state.stagedFavorites, channelId, "remove");
+            this.$set(state.stagedFavorites, channelId, "remove");
         } else {
-            Vue.set(state.stagedFavorites, channelId, "add");
+            this.$set(state.stagedFavorites, channelId, "add");
         }
         // console.log(state.stagedFavorites);
     },

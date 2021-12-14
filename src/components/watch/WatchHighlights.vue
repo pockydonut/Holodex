@@ -2,9 +2,11 @@
   <v-sheet>
     <div v-if="buckets.length > 0" class="highlight-container">
       <div class="highlight-bar">
-        <template v-for="b in buckets">
+        <template
+          v-for="b in buckets"
+          :key="b.display"
+        >
           <v-tooltip
-            :key="b.display"
             top
             color="black"
             transition="undefined"

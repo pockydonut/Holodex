@@ -1,10 +1,9 @@
 <script lang="ts">
 import debounce from "lodash-es/debounce";
-import VMenu from "vuetify/lib/components/VMenu/VMenu";
 
 export default {
     name: "ResponsiveMenu",
-    extends: VMenu,
+    // extends: VMenu,
     props: {
         itemCount: {
             type: Number,

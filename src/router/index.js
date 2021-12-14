@@ -1,4 +1,4 @@
-import Vue from "vue";
+// import Vue from "vue";
 import VueRouter from "vue-router";
 import { loadLanguageAsync } from "@/plugins/vuetify";
 import HomeFave from "../views/HomeFave.vue";
@@ -24,7 +24,7 @@ const Playlists = () => import("../views/Playlists.vue");
 const AddPlaceholderStream = () => import("../views/AddPlaceholderStream.vue");
 const Extension = () => import("../views/Extension.vue");
 
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 
 const routes = [
     {

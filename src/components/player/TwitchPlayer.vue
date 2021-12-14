@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import Vue from "vue";
-import LoadScript from "vue-plugin-load-script";
+// import Vue from "vue";
+// import LoadScript from "vue-plugin-load-script";
 import PlayerMixin from "./PlayerMixin";
 
-Vue.use(LoadScript);
+// Vue.use(LoadScript);
 let pid = 0;
 
 export default {
@@ -65,36 +65,36 @@ export default {
         }
     },
     beforeCreate() {
-        Vue.loadScript("https://player.twitch.tv/js/embed/v1.js")
-            .then(() => {
-                const options = {
-                    width: this.width,
-                    height: this.height,
-                    parent: [window.location.hostname],
-                    autoplay: false,
-                };
-                if (this.playsInline) {
-                    options.playsinline = true;
-                }
-                if (this.channel) {
-                    options.channel = this.channel;
-                } else if (this.video) {
-                    options.video = this.video;
-                } else {
-                    this.$emit("error", "no source specified");
-                }
-                this.player = new window.Twitch.Player(this.elementId, options);
-                this.player.addEventListener("ended", () => this.$emit("ended"));
-                this.player.addEventListener("pause", () => this.$emit("paused"));
-                this.player.addEventListener("play", () => this.$emit("playing"));
-                // this.player.addEventListener("offline", () => this.$emit("offline"));
-                // this.player.addEventListener("online", () => this.$emit("online"));
-                this.player.addEventListener("ready", () => {
-                    this.player.setQuality(this.quality);
-                    this.playerReady(this.player);
-                });
-            })
-            .catch((e) => this.playerError(e));
+        // Vue.loadScript("https://player.twitch.tv/js/embed/v1.js")
+        //     .then(() => {
+        //         const options = {
+        //             width: this.width,
+        //             height: this.height,
+        //             parent: [window.location.hostname],
+        //             autoplay: false,
+        //         };
+        //         if (this.playsInline) {
+        //             options.playsinline = true;
+        //         }
+        //         if (this.channel) {
+        //             options.channel = this.channel;
+        //         } else if (this.video) {
+        //             options.video = this.video;
+        //         } else {
+        //             this.$emit("error", "no source specified");
+        //         }
+        //         this.player = new window.Twitch.Player(this.elementId, options);
+        //         this.player.addEventListener("ended", () => this.$emit("ended"));
+        //         this.player.addEventListener("pause", () => this.$emit("paused"));
+        //         this.player.addEventListener("play", () => this.$emit("playing"));
+        //         // this.player.addEventListener("offline", () => this.$emit("offline"));
+        //         // this.player.addEventListener("online", () => this.$emit("online"));
+        //         this.player.addEventListener("ready", () => {
+        //             this.player.setQuality(this.quality);
+        //             this.playerReady(this.player);
+        //         });
+        //     })
+        //     .catch((e) => this.playerError(e));
     },
     methods: {
         play() {

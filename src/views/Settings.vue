@@ -293,7 +293,6 @@ import {
 import { TL_LANGS } from "@/utils/consts";
 import themeSet from "@/utils/themes";
 import { syncState } from "@/utils/functions";
-import Vue from "vue";
 import backendApi from "@/utils/backend-api";
 
 export default {
@@ -436,11 +435,11 @@ export default {
         },
         themeId(nw) {
             localStorage.setItem("theme", `${nw}`);
-            Vue.set(this.$vuetify.theme.themes, "dark", {
+            this.$set(this.$vuetify.theme.themes, "dark", {
                 ...this.$vuetify.theme.themes.dark,
                 ...themeSet[nw].themes.dark,
             });
-            Vue.set(this.$vuetify.theme.themes, "light", {
+            this.$set(this.$vuetify.theme.themes, "light", {
                 ...this.$vuetify.theme.themes.light,
                 ...themeSet[nw].themes.light,
             });

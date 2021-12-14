@@ -12,9 +12,11 @@
           height: `${size.height}px`,
         }"
       >
-        <template v-for="(l, idx) in layout">
+        <template
+          v-for="(l, idx) in layout"
+          :key="l.i"
+        >
           <div
-            :key="l.i"
             class="layout-preview-cell"
             :style="getStyle(l)"
             @dragover="onDragOver"

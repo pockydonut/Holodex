@@ -28,9 +28,13 @@
           :item-width="220"
           :item-count="hotSongs.length"
         >
-          <template v-for="(song, idx) in hotSongs">
+          <template
+            v-for="(song, idx) in hotSongs"
+            :key="'clist4' + idx"
+          >
+            <!--               :key="'clist4' + idx"
+ -->
             <song-item-card
-              :key="'clist4' + idx"
               style="width: 200px; margin: 10px"
               :song="song"
               show-time

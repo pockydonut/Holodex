@@ -307,9 +307,11 @@
     <v-row dense>
       <v-col cols="12">
         <v-list style="min-height: 30vh">
-          <template v-for="song in songList">
+          <template
+            v-for="song in songList"
+            :key="song.name"
+          >
             <song-item
-              :key="song.name"
               :song="song"
               detailed
               :hover-icon="icons.mdiPencil"
@@ -335,7 +337,7 @@
 import {
     mdiEarHearing, mdiRestore, mdiTimerOutline, mdiDebugStepOver, mdiTimelinePlusOutline,
 } from "@mdi/js";
-import Vue from "vue";
+// import Vue from "vue";
 
 import backendApi from "@/utils/backend-api";
 import { secondsToHuman } from "@/utils/time";
@@ -523,7 +525,7 @@ export default {
             const self = this as any;
             await self.saveCurrentSong();
             // this.songList.push(this.current);
-            Vue.set(self, "current", getEmptySong(self.video));
+            this.$set(self, "current", getEmptySong(self.video));
             self.$refs.search.query = null;
             await self.refreshSongList();
         },

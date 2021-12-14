@@ -4,8 +4,8 @@
     <!-- Add headers if it's grouped channels -->
     <v-row v-if="grouped" dense>
       <!-- channelsByGroup has group title and group items, nested loop -->
-      <template v-for="(group, index) in channelsByGroup">
-        <v-col :key="'title-' + index" cols="12" class="text-h6">
+      <template v-for="(group, index) in channelsByGroup" :key="'title-' + index">
+        <v-col cols="12" class="text-h6">
           {{ group.title }}
         </v-col>
         <v-col
@@ -33,10 +33,12 @@
   <!-- Grouped channel list with headers and a favorite by group button -->
   <v-list v-else-if="grouped" class="pa-0">
     <!-- channelsByGroup has group title and group items, nested loop -->
-    <template v-for="(group, index) in channelsByGroup">
-      <v-divider :key="'divider-grp' + index" />
+    <template
+      v-for="(group, index) in channelsByGroup"
+      :key="`${index}-${group.title}`"
+    >
+      <v-divider />
       <v-list-group
-        :key="`${index}-${group.title}`"
         no-action
         sub-group
         value="0"
@@ -74,9 +76,9 @@
           </v-list-item>
         </template>
         <!-- Channel list -->
-        <template v-for="(channel, index2) in group.items">
-          <v-divider :key="'divider-' + index2" />
-          <v-lazy :key="channel.id" min-height="100">
+        <template v-for="(channel, index2) in group.items" :key="channel.id">
+          <v-divider />
+          <v-lazy min-height="100">
             <v-list-item
               v-if="channel"
               :to="`/channel/${channel.id}`"
@@ -98,9 +100,9 @@
   </v-list>
   <!-- Normal channel list -->
   <v-list v-else class="pa-0">
-    <template v-for="(channel, index) in channels">
-      <v-divider :key="'divider-' + index" />
-      <v-lazy :key="channel.id" min-height="88">
+    <template v-for="(channel, index) in channels" :key="channel.id">
+      <v-divider />
+      <v-lazy min-height="88">
         <v-list-item
           v-if="channel"
           :to="`/channel/${channel.id}`"

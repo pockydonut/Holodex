@@ -100,9 +100,11 @@
             {{ mdiAt }}
           </v-icon>
         </v-avatar>
-        <template v-for="mention in channelChips">
+        <template
+          v-for="mention in channelChips"
+          :key="mention.id"
+        >
           <ChannelChip
-            :key="mention.id"
             :channel="mention"
             :size="60"
           />

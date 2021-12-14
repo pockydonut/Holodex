@@ -69,8 +69,8 @@
             >
           </div>
           <!-- List of progress bars with icons -->
-          <template v-for="(v) in splitProgressBarData">
-            <div :key="v.id" class="d-flex align-center my-1">
+          <template v-for="(v) in splitProgressBarData" :key="v.id+'v-xsz'">
+            <div class="d-flex align-center my-1">
               <channel-img
                 :channel="v.channel"
                 :size="24"
@@ -103,8 +103,8 @@
         <v-card-title>{{ $t("views.multiview.sync.syncSettings") }}</v-card-title>
         <v-card-text>
           {{ $t("views.multiview.sync.syncSettingsDetail") }}
-          <template v-for="v in overlapVideos">
-            <div :key="v.id" class="d-flex justify-space-between my-1">
+          <template v-for="v in overlapVideos" :key="v.id+'v-sx'">
+            <div class="d-flex justify-space-between my-1">
               <channel-img
                 :channel="v.channel"
                 :size="40"
@@ -144,7 +144,7 @@
 <script lang="ts">
 import { mapState, mapGetters } from "vuex";
 import { formatDuration, dayjs } from "@/utils/time";
-import Vue from "vue";
+// import Vue from "vue";
 import throttle from "lodash-es/throttle";
 import copyToClipboard from "@/mixins/copyToClipboard";
 import {
@@ -337,7 +337,7 @@ export default {
 
                     // Update pervideo progress bar
                     const percentProgress = this.currentTs > olVideo.endTs ? 100 : ((currentTime / olVideo.duration) * 100).toFixed(2);
-                    Vue.set(this.currentProgressByVideo, olVideo.id, percentProgress);
+                    this.$set(this.currentProgressByVideo, olVideo.id, percentProgress);
 
                     // Calc delta times to keep things in sync
                     const expectedDuration = this.currentTs - olVideo.startTs + (this.offsets[olVideo.id] ?? 0);
