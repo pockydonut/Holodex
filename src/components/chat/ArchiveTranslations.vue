@@ -47,7 +47,7 @@
     </v-card-subtitle>
     <v-divider />
     <portal to="expandedMessage" :disabled="!expanded" slim>
-      <virtual-list
+      <!-- <virtual-list
         ref="tlBody"
         class="archive tl-body px-1 py-0 px-lg-3"
         :style="{
@@ -60,7 +60,7 @@
         :item-class-add="activeClass"
         :keeps="50"
         @click.native="handleClick"
-      />
+      /> -->
     </portal>
     <portal v-if="showSubtitle" :to="`${video.id}-overlay`">
       <WatchSubtitleOverlay :messages="toDisplay" />
@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import VirtualList from "vue-virtual-scroll-list";
+// import VirtualList from "vue-virtual-scroll-list";
 import WatchLiveTranslationsSetting from "./LiveTranslationsSetting.vue";
 import ChatMessage from "./ChatMessage.vue";
 import chatMixin from "./chatMixin";
@@ -79,7 +79,7 @@ export default {
     name: "ArchiveTranslations",
     components: {
         WatchLiveTranslationsSetting,
-        VirtualList,
+        // VirtualList,
         WatchSubtitleOverlay,
     },
     mixins: [chatMixin],

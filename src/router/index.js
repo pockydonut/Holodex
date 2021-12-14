@@ -1,5 +1,5 @@
 // import Vue from "vue";
-import VueRouter from "vue-router";
+import { createRouter } from "vue-router";
 import { loadLanguageAsync } from "@/plugins/vuetify";
 import HomeFave from "../views/HomeFave.vue";
 import store from "../store";
@@ -166,7 +166,7 @@ const routes = [
     },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
     mode: "history",
     base: import.meta.env.BASE_URL,
     routes,

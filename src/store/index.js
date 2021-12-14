@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 // import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import createMutationsSharer from "vuex-shared-mutations";
 import createMigrate from "vuex-persistedstate-migrate";
@@ -11,6 +11,7 @@ import { sendTokenToExtension } from "@/utils/messaging";
 
 import backendApi from "@/utils/backend-api";
 import debounce from "lodash-es/debounce";
+import * as icons from "@/utils/icons";
 import home from "./home.module";
 import channel from "./channel.module";
 import channels from "./channels.module";
@@ -84,7 +85,7 @@ const syncedModules = /^(?:playlist|settings|history)/;
 const syncedMutations = new Set(["resetState", "setUser", "setShowUpdatesDetail", "firstVisit", "firstVisitMugen", "favorites/setFavorites", "favorites/resetFavorites", "favorites/setLive", "music/addSong", "music/removeSong", "music/resetState", "music/clearPlaylist", "multiview/addPresetLayout", "multiview/removePresetLayout", "multiview/togglePresetAutoLayout", "multiview/setAutoLayout"]);
 
 const persistedPaths = ["orgs", "playlist", "settings", "history", "migration", "multiview", "channels.cardView", "channels.sort", "currentOrg", "favorites.favorites", "lastShownInstallPrompt", "firstVisit", "firstVisitMugen", "music.playlist", "music.currentId", "music.mode", "orgFavorites", "showUpdateDetails", "userdata", "watch.showLiveChat", "watch.showTL", "watch.theaterMode", "currentGridSize"];
-export default new Vuex.Store({
+export default createStore({
     plugins: [
         createPersistedState({
             key: "holodex-v2",
@@ -107,11 +108,11 @@ export default new Vuex.Store({
         gridIcon(state) {
             switch (state.currentGridSize) {
                 case 1:
-                    return Vue.icons.mdiGrid;
+                    return icons.mdiGrid;
                 case 2:
-                    return Vue.icons.mdiSquareOutline;
+                    return icons.mdiSquareOutline;
                 default:
-                    return Vue.icons.mdiGridLarge;
+                    return icons.mdiGridLarge;
             }
         },
         isSuperuser(state) {

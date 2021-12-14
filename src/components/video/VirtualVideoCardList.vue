@@ -1,7 +1,8 @@
 <template>
   <!-- <v-container class="py-0" style="position: relative" fluid :id="'t' + randomId"> -->
   <!-- Video Card grid rows -->
-  <virtual-list
+  <div />
+  <!-- <virtual-list
     ref="virtualVideoList"
     style="overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain"
     :style="{ height: computedHeight }"
@@ -14,19 +15,19 @@
     :page-mode="pageMode"
     :item-class="'virtual-video-list-item'"
     :item-class-add="checkActive"
-  />
+  /> -->
   <!-- </v-container> -->
 </template>
 
 <script lang="ts">
 import VideoCard from "@/components/video/VideoCard.vue";
-import VirtualList from "vue-virtual-scroll-list";
+// import VirtualList from "vue-virtual-scroll-list";
 import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
 
 export default {
     name: "VirtualVideoCardList",
     components: {
-        VirtualList,
+        // VirtualList,
     },
     props: {
         // videos: {
