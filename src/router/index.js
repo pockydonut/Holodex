@@ -1,5 +1,5 @@
 // import Vue from "vue";
-import { createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import { loadLanguageAsync } from "@/plugins/vuetify";
 import HomeFave from "../views/HomeFave.vue";
 import store from "../store";
@@ -161,7 +161,7 @@ const routes = [
         component: NotFound,
     },
     {
-        path: "*",
+        path: "/:pathMatch(.*)*",
         component: NotFound,
     },
 ];
@@ -181,6 +181,7 @@ const router = createRouter({
         }
         return savedPosition || { x: 0, y: 0 };
     },
+    history: createWebHistory()
 });
 
 router.beforeEach((to, from, next) => {

@@ -37,13 +37,13 @@
     <template v-else>
       <!-- Archive and Clips section -->
       <v-col
-        v-show="!$vuetify.breakpoint.isXs"
+        v-show="!$vuetify.display.isXs"
         xs="4"
         sm="4"
         style="display: flex; justify-content: flex-end;"
         class="ma-0 pb-0 pt-0"
       >
-        <portal :to="portalName" :disabled="$vuetify.breakpoint.xs">
+        <portal :to="portalName" :disabled="$vuetify.display.xs">
           <v-menu
             v-show="isActive"
             v-model="datePicker"
@@ -199,9 +199,9 @@ export default {
             };
         },
         shouldIncludeAvatar() {
-            if (this.$vuetify.breakpoint.md && this.currentGridSize > 1) return false;
-            if (this.$vuetify.breakpoint.sm && this.currentGridSize > 0) return false;
-            if (this.$vuetify.breakpoint.xs && this.currentGridSize > 0) return false;
+            if (this.$vuetify.display.md && this.currentGridSize > 1) return false;
+            if (this.$vuetify.display.sm && this.currentGridSize > 0) return false;
+            if (this.$vuetify.display.xs && this.currentGridSize > 0) return false;
             return true;
         },
         shouldHideCollabs() {

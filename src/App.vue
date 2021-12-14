@@ -80,7 +80,7 @@ export default {
         },
         // watches change in breakpoint from vuetify and updates store
         // eslint-disable-next-line func-names
-        "$vuetify.breakpoint.name": function () {
+        "$vuetify.display.name": function () {
             this.updateIsMobile();
         },
         // eslint-disable-next-line func-names
@@ -109,8 +109,8 @@ export default {
 
         // set lang
         this.$i18n.locale = this.$store.state.settings.lang;
-        this.$vuetify.lang.current = this.$store.state.settings.lang;
-
+        // this.$vuetify.lang.current = this.$store.state.settings.lang;
+        // TODO vuetify 3 break
         // relog if necessary:
         this.$store.dispatch("loginCheck");
 
@@ -135,7 +135,7 @@ export default {
     },
     methods: {
         updateIsMobile() {
-            this.$store.commit("setIsMobile", ["xs", "sm"].includes(this.$vuetify.breakpoint.name));
+            this.$store.commit("setIsMobile", ["xs", "sm"].includes(this.$vuetify.display.name));
         },
         interceptError(error) {
             // Any status codes that falls outside the range of 2xx cause this function to trigger

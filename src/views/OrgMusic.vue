@@ -24,7 +24,7 @@
         </v-card-title>
         <carousel
           v-if="hotSongs.length"
-          :window-size="BREAKPOINTS[$vuetify.breakpoint.name]"
+          :window-size="BREAKPOINTS[$vuetify.display.name]"
           :item-width="220"
           :item-count="hotSongs.length"
         >

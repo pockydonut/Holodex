@@ -167,7 +167,7 @@ export default {
     },
     computed: {
         isXs() {
-            return this.$vuetify.breakpoint.width <= 420;
+            return this.$vuetify.display.width <= 420;
         },
         channelsByGroup() {
             const groupedChannels = [];

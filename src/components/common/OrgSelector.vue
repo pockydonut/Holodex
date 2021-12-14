@@ -36,8 +36,8 @@
               <v-icon
                 size="30"
                 class="change-org-icon"
-                :class="{ 'rotate-180': activator.attrs['aria-expanded'] === 'true' }"
               >
+                <!--  VUE3 BREAK: :class="{ 'rotate-180': activator.attrs['aria-expanded'] === 'true' }" -->
                 {{ icons.mdiMenuDown }}
               </v-icon>
             </div>

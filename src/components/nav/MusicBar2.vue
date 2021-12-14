@@ -49,7 +49,7 @@
         <portal-target name="slide-bar-top" />
         <div
           class="d-flex justify-space-between pa-2"
-          :class="{ 'flex-column': $vuetify.breakpoint.xs }"
+          :class="{ 'flex-column': $vuetify.display.xs }"
         >
           <div class="player-controls d-flex align-center">
             <div>
@@ -150,7 +150,7 @@
               </v-slide-x-transition>
             </div>
             <div
-              v-if="$vuetify.breakpoint.xs"
+              v-if="$vuetify.display.xs"
               style="display: flex; flex-direction: column; align-items: center"
             >
               <v-btn icon @click="closePlayer">
@@ -234,7 +234,7 @@
             </div>
           </transition>
           <div
-            v-if="$vuetify.breakpoint.smAndUp"
+            v-if="$vuetify.display.smAndUp"
             class="playlist-buttons align-self-center"
           >
             <v-btn

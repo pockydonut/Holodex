@@ -6,15 +6,15 @@
     :item-class="() => 'selectable'"
     item-key="id"
     class="elevation-1 recent-table"
-    :class="{ 'recent-table-small': $vuetify.breakpoint.smAndDown }"
+    :class="{ 'recent-table-small': $vuetify.display.smAndDown }"
     :search="search"
     hide-default-footer
     :items-per-page="perPageItems"
     disable-sort
     :loading="loading"
-    :dense="$vuetify.breakpoint.smAndDown"
+    :dense="$vuetify.display.smAndDown"
   >
-    <template v-if="$vuetify.breakpoint.smAndDown" #item="{ item }">
+    <template v-if="$vuetify.display.smAndDown" #item="{ item }">
       <tr>
         <td :key="item.name + item.video_id + 'cell'" colspan="5">
           <song-item
@@ -30,7 +30,7 @@
       </tr>
     </template>
     <!-- eslint-disable-next-line vue/valid-v-slot -->
-    <template v-if="!$vuetify.breakpoint.smAndDown" #item.channel_id="{ item }">
+    <template v-if="!$vuetify.display.smAndDown" #item.channel_id="{ item }">
       <v-btn
         small
         class="hoverable"
@@ -42,7 +42,7 @@
       </v-btn>
     </template>
     <!-- eslint-disable-next-line vue/valid-v-slot -->
-    <template v-if="!$vuetify.breakpoint.smAndDown" #item.channel.name="{ item, value }">
+    <template v-if="!$vuetify.display.smAndDown" #item.channel.name="{ item, value }">
       <span>{{ item.channel[nameProperty] || value }}</span>
       <v-btn
         v-if="channelLink"
@@ -57,12 +57,12 @@
       </v-btn>
     </template>
     <!-- eslint-disable-next-line vue/valid-v-slot -->
-    <template v-if="!$vuetify.breakpoint.smAndDown" #item.start="{ item }">
+    <template v-if="!$vuetify.display.smAndDown" #item.start="{ item }">
       <span>{{ formatDuration(item.end * 1000 - item.start * 1000) }}</span>
     </template>
     <!-- eslint-disable-next-line vue/valid-v-slot -->
-    <template v-if="!$vuetify.breakpoint.smAndDown" #item.available_at="{ item }">
-      <span v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.mdAndUp" class="blue-grey--text">{{
+    <template v-if="!$vuetify.display.smAndDown" #item.available_at="{ item }">
+      <span v-if="$vuetify.display.xs || $vuetify.display.mdAndUp" class="blue-grey--text">{{
         formatDate(item.available_at)
       }}</span>
       <v-btn
@@ -130,10 +130,10 @@ export default {
     },
     computed: {
         RECENT_HEADER() {
-            // const breakpoint = $vuetify.breakpoint.name
+            // const breakpoint = $vuetify.display.name
 
-            const datewidth = this.$vuetify.breakpoint.xlAndUp ? "190px" : "180px";
-            if (this.$vuetify.breakpoint.smAndDown) {
+            const datewidth = this.$vuetify.display.xlAndUp ? "190px" : "180px";
+            if (this.$vuetify.display.smAndDown) {
                 return [
                     {
                         text: "",
@@ -163,7 +163,7 @@ export default {
                     cellClass: "text-subtitle-2",
                 },
                 { text: this.$t("component.songList.songCoveredBy"), width: "25%", value: "channel.name" },
-                ...(this.$vuetify.breakpoint.mdAndUp
+                ...(this.$vuetify.display.mdAndUp
                     ? [{ text: this.$t("editor.music.originalArtistInput"), width: "20%", value: "original_artist" }]
                     : []),
                 {
@@ -176,7 +176,7 @@ export default {
                     text: this.$t("component.songList.sangOnTime"),
                     value: "available_at",
                     align: "end",
-                    width: this.$vuetify.breakpoint.mdAndUp ? datewidth : "90px",
+                    width: this.$vuetify.display.mdAndUp ? datewidth : "90px",
                 },
             ];
         },

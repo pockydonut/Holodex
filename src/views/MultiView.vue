@@ -7,7 +7,7 @@
     <!-- Floating tool bar -->
     <MultiviewToolbar v-show="!collapseToolbar" v-model="collapseToolbar" :buttons="buttons">
       <template #left>
-        <VideoSelector v-if="!$vuetify.breakpoint.xs" horizontal @videoClicked="handleToolbarClick" />
+        <VideoSelector v-if="!$vuetify.display.xs" horizontal @videoClicked="handleToolbarClick" />
         <!-- Single Button video selector for xs displays -->
         <v-btn icon large @click="handleToolbarShowSelector">
           <v-icon style="border-radius: 0 position: relative; margin-right: 3px; cursor: pointer" large>
@@ -255,7 +255,7 @@ export default {
                     onClick: this.toggleSyncBar,
                     color: "deep-purple lighten-2",
                     tooltip: this.$t("views.multiview.archiveSync"),
-                    collapse: this.$vuetify.breakpoint.xs,
+                    collapse: this.$vuetify.display.xs,
                 },
                 {
                     icon: mdiContentSave,
@@ -264,20 +264,20 @@ export default {
                     },
                     tooltip: this.$t("views.multiview.presetEditor.title"),
                     color: "secondary",
-                    collapse: this.$vuetify.breakpoint.mdAndDown,
+                    collapse: this.$vuetify.display.mdAndDown,
                 },
                 {
                     icon: this.icons.mdiDelete,
                     tooltip: this.$t("component.music.clearPlaylist"),
                     onClick: this.clearAllItems,
                     color: "red",
-                    collapse: this.$vuetify.breakpoint.smAndDown,
+                    collapse: this.$vuetify.display.smAndDown,
                 },
                 {
                     icon: this.icons.mdiFullscreen,
                     onClick: this.toggleFullScreen,
                     tooltip: this.$t("views.multiview.fullScreen"),
-                    collapse: this.$vuetify.breakpoint.mdAndDown,
+                    collapse: this.$vuetify.display.mdAndDown,
                 },
             ]);
         },
@@ -296,12 +296,12 @@ export default {
             return this.$store.state.isMobile;
         },
         rowHeight() {
-            return (this.$vuetify.breakpoint.height
+            return (this.$vuetify.display.height
                 - (this.collapseToolbar ? 0 : 64)
                 - (this.showSyncBar ? 100 : 0)) / 24.0;
         },
         columnWidth() {
-            return this.$vuetify.breakpoint.width / 24.0;
+            return this.$vuetify.display.width / 24.0;
         },
         videoRefs() {
             return this.$refs.videoCell;

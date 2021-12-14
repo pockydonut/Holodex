@@ -20,6 +20,8 @@ const app = createApp({
 
 app.use(store);
 app.use(router);
+app.use(vuetify);
+app.use(i18n);
 
 app.config.productionTip = false;
 app.config.devtools = window.location.hostname === "localhost";
