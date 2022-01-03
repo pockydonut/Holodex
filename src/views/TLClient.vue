@@ -422,6 +422,24 @@ export default {
             for (let i = 0; i < this.ActiveChat.length; i += 1) {
                 if (this.ActiveChat[i].text === target) {
                     this.ActiveChat[i].IFrameEle = event.target;
+                    switch (target.slice(0, 3)) {
+                        case "YT_":
+                            event.target.contentWindow?.postMessage({
+                                n: "HolodexSync",
+                                d: "Initiate",
+                            }, "https://www.youtube.com");
+                            break;
+
+                        case "TW_":
+                            event.target.contentWindow?.postMessage({
+                                n: "HolodexSync",
+                                d: "Initiate",
+                            }, "https://www.twitch.tv");
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
             }
         },
